@@ -1,0 +1,30 @@
+<?php 
+// koneksi database
+include '../koneksi.php';
+ 
+// menangkap data yang di kirim dari form
+$id = $_POST['id'];
+$id_karyawan = $_POST['id_karyawan'];
+$password_karyawan = $_POST['password_karyawan'];
+$nama_karyawan = $_POST['nama_karyawan'];
+$tanggal_lahir = $_POST['tanggal_lahir'];
+$jabatan_karyawan = $_POST['jabatan_karyawan'];
+$alamat_karyawan = $_POST['alamat_karyawan'];
+ 
+// update data ke database
+mysqli_query($koneksi,"update karyawan set 
+id_karyawan='$id_karyawan', 
+password_karyawan='$password_karyawan', 
+nama_karyawan='$nama_karyawan', 
+tanggal_lahir='$tanggal_lahir', 
+jabatan_karyawan='$jabatan_karyawan', 
+alamat_karyawan='$alamat_karyawan'  
+where id='$id'");
+ 
+// mengalihkan halaman kembali ke index.php
+echo "<script>
+	alert('Data berhasil di update');
+	window.location.href='manageemployee.php';
+	</script>" ;
+
+?>
