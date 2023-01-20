@@ -224,11 +224,22 @@
                     <!-- DataTales Example -->
                 <?php
                 // require_once('koneksi.php');
+             
+
+                
                 if($_POST){
+                    $id_karyawan = $_POST['id_karyawan'];
+                    $sql2 = mysqli_query($koneksi, "select count(id_karyawan) as jumlah from karyawan where id_karyawan='".$_POST['id_karyawan']."'");
+                    $l = mysqli_fetch_array($sql2);
+                    if ($l['jumlah'] == '1'){
+                        echo "<script>
+                        alert('Id Karyawan Sudah Terdaftar');
+                        window.location.href='inputemployee.php';
+                        </script>";} else{
                     try {
                         $sql = "INSERT INTO karyawan 
-                        (id_karyawan,password_karyawan,nama_karyawan,tanggal_lahir,jabatan_karyawan,alamat_karyawan) 
-                        VALUES ('".$_POST['id_karyawan']."','".$_POST['password_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['tanggal_lahir']."','".$_POST['jabatan_karyawan']."','".$_POST['alamat_karyawan']."')";
+                        (id_karyawan,password_karyawan,nama_karyawan,tanggal_lahir,jabatan_karyawan,alamat_karyawan,area_karyawan,hp_karyawan,email_karyawan,tempat_lahir) 
+                        VALUES ('".$_POST['id_karyawan']."','".$_POST['password_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['tanggal_lahir']."','".$_POST['jabatan_karyawan']."','".$_POST['alamat_karyawan']."','".$_POST['area_karyawan']."','".$_POST['hp_karyawan']."','".$_POST['email_karyawan']."','".$_POST['tempat_lahir']."')";
                         if(!$koneksi->query($sql)){
                             echo $koneksi->error;
                             die();
@@ -241,35 +252,66 @@
                     echo "<script>
                     alert('Data berhasil di simpan');
                     window.location.href='inputemployee.php';
-                    </script>";
-                }
+                    </script>";}
+                } 
                 ?>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
+                        
                         <form action="" method="POST">
                             <div class="form-group">
                                 <label>Id Karyawan</label>
-                                <input type="text" value="" class="form-control" name="id_karyawan">
+                                <input type="text" value="" class="form-control shadow" name="id_karyawan" required>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" value="" class="form-control" name="password_karyawan">
+                                <input type="text" value="" class="form-control shadow" name="password_karyawan" required>
                             </div>
                             <div class="form-group">
                                 <label>Nama Karyawan</label>
-                                <input type="text" value="" class="form-control" name="nama_karyawan">
+                                <input type="text" title="Cannot input number" value="" pattern="[a-z A-Z]*" class="form-control shadow" name="nama_karyawan" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tempat Lahir</label>
+                                <input type="text" title="Cannot input number" value="" pattern="[a-z A-Z]*" class="form-control shadow" name="tempat_lahir" required>
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
-                                <input type="date" value="" class="form-control" name="tanggal_lahir">
+                                <input type="date" value="" class="form-control shadow" name="tanggal_lahir" required>
                             </div>
                             <div class="form-group">
                                 <label>Jabatan</label>
-                                <input type="text" value="" class="form-control" name="jabatan_karyawan">
+                                <input type="text" title="cannot input number" value="" pattern="[a-z A-Z]*" class="form-control shadow" name="jabatan_karyawan" required>
                             </div>
+     
+                    </div>
+                    <div class="col-lg-6"> 
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" value="" class="form-control" name="alamat_karyawan">
+                                <input type="text" value="" class="form-control shadow" name="alamat_karyawan" required>
+                            
+                            </div>   
+                            <div class="form-group">
+                                <label>Area</label></br>
+                                <select name="area_karyawan" id="nama_area"class=" form-select" required>
+                                    <option  selected> Pilih </option>
+                                    <?php 
+                                        $sql3=mysqli_query($koneksi,"SELECT * FROM area");
+                                        while ($data3=mysqli_fetch_array($sql3)) {
+                                        ?>
+                                        <option value="<?=$data3['nama_area']?>"><?=$data3['nama_area']?></option> 
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>No hp</label>
+                                <input type="text" value="" class="form-control shadow " name="hp_karyawan" pattern="[0-9]+" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" value="" class="form-control shadow" name="email_karyawan" required>
                             </div>
                             <input type="submit" class="btn btn-primary btn-md btn-block" name="create" value="Create">
                         </form>

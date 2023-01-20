@@ -12,6 +12,8 @@
     
     <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    
     <title>Manage Employee</title>
  	
 </head>
@@ -137,7 +139,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-
+    
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -220,7 +222,8 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
+            
+           
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Manage Employee</h1>
@@ -235,16 +238,19 @@
 </br>
                 <div class="col-lg-12">
                     <a href="inputemployee.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>
-                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-success btn-sm"><span class="fas fa-plus"></span> Export To Excel</a> 
+                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
                     <table class="table table-hover table-bordered" style="margin-top: 10px">
                         <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Karyawan</th>
                             <th>Password</th>
                             <th>Nama Karyawan</th>
-                            <th>Tanggal Lahir</th>
+                            <!-- <th>Tanggal Lahir</th> -->
                             <th>Jabatan</th>
-                            <th>Alamat</th>
+                            <!-- <th>Alamat</th> -->
+                            <th>Area</th>
+                            <!-- <th>No hp</th> -->
+                            <!-- <th>Email</th> -->
                             <th style="text-align: center;">Actions</th>
                         </tr>
                     
@@ -261,20 +267,27 @@
                                 <td><?php echo $d['id_karyawan']; ?></td>
                                 <td><?php echo $d['password_karyawan']; ?></td>
                                 <td><?php echo $d['nama_karyawan']; ?></td>
-                                <td><?php echo $d['tanggal_lahir']; ?></td>
+                                <!-- <td><?php echo $d['tanggal_lahir']; ?></td> -->
                                 <td><?php echo $d['jabatan_karyawan']; ?></td>
-                                <td><?php echo $d['alamat_karyawan']; ?></td>
+                                <!-- <td><?php echo $d['alamat_karyawan']; ?></td> -->
+                                <td><?php echo $d['area_karyawan']; ?></td>
+                                <!-- <td><?php echo $d['hp_karyawan']; ?></td> -->
+                                <!-- <td><?php echo $d['email_karyawan']; ?></td> -->
                                 
                                 <td style="text-align: center;">
                                     <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapusemployee.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
                                     <a href="updateemployee.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-pen"></span></a>
+                                    <a class="btn btn-secondary open_modal btn-sm"  data-toggle='modal' id='<?php echo $d['id_karyawan']; ?>' ><span class="fas fa-info-circle"></span></a>
+                                    
                                 </td>
                             </tr>
                             <?php
                         }
                         ?>
                         
+                        
                     </table>
+                    <div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
                 </div>
                 
                     </div>
@@ -330,5 +343,24 @@
     <script src="../assets/sbsadmin/js/demo/chart-area-demo.js"></script>
     <script src="../assets/sbsadmin/js/demo/chart-pie-demo.js"></script>
  
+
+
+    <script type="text/javascript">
+            $(document).ready(function (){
+                $(".open_modal").click(function (e){
+                    var m = $(this).attr("id");
+                    $.ajax({
+                        url: "detailkaryawan.php",
+                        type: "GET",
+                        data : {id_karyawan: m,},
+                        success: function (ajaxData){
+                            $("#ModalEdit").html(ajaxData);
+                            $("#ModalEdit").modal('show',{backdrop: 'true'});
+                        }
+                    });
+                });
+            });
+        </script>        
+
 </body>
 </html>

@@ -224,11 +224,21 @@
                     <!-- DataTales Example -->
                 <?php
                 // require_once('koneksi.php');
+                
+
                 if($_POST){
+                    $id_pelatihan = $_POST['id_pelatihan'];
+                    $sql2 = mysqli_query($koneksi, "select * from pelatihan");
+                    $l = mysqli_fetch_array($sql2);
+                    if ($id_pelatihan == $l['id_pelatihan']){
+                        echo "<script>
+                        alert('Id pelatihan Sudah Terdaftar');
+                        window.location.href='inputtraining.php';
+                        </script>";} else {
                     try {
                         $sql = "INSERT INTO pelatihan 
-                        (id_pelatihan,nama_pelatihan,jadwal_pelatihan,jenis_pelatihan) 
-                        VALUES ('".$_POST['id_pelatihan']."','".$_POST['nama_pelatihan']."','".$_POST['jadwal_pelatihan']."','".$_POST['jenis_pelatihan']."')";
+                        (id_pelatihan,nama_pelatihan)
+                        VALUES ('".$_POST['id_pelatihan']."','".$_POST['nama_pelatihan']."')";
                         if(!$koneksi->query($sql)){
                             echo $koneksi->error;
                             die();
@@ -242,7 +252,7 @@
                     alert('Data berhasil di simpan');
                     window.location.href='inputtraining.php';
                     </script>";
-                }
+                } }
                 ?>
                 <div class="row">
                     <div class="col-lg-12">
@@ -253,16 +263,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama Pelatihan</label>
-                                <input type="text" value="" class="form-control" name="nama_pelatihan">
+                                <input type="text" title="Cannot input number" pattern="[a-z A-Z]*" value="" class="form-control" name="nama_pelatihan">
                             </div>
-                            <div class="form-group">
-                                <label>Jadwal Pelatihan</label>
-                                <input type="date" value="" class="form-control" name="jadwal_pelatihan">
-                            </div>
-                            <div class="form-group">
-                                <label>Jenis Pelatihan</label>
-                                <input type="text" value="" class="form-control" name="jenis_pelatihan">
-                            </div>
+                            
 
                             <input type="submit" class="btn btn-primary btn-md btn-block" name="create" value="Create">
                         </form>
