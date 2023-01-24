@@ -6,16 +6,15 @@ include '../koneksi.php';
 $id = $_POST['id'];
 $id_pelatihan = $_POST['id_pelatihan'];
 $nama_pelatihan = $_POST['nama_pelatihan'];
-$jadwal_pelatihan = $_POST['jadwal_pelatihan'];
-$jenis_pelatihan = $_POST['jenis_pelatihan'];
+// $jadwal_pelatihan = $_POST['jadwal_pelatihan'];
+// $jenis_pelatihan = $_POST['jenis_pelatihan'];
 
  
 // update data ke database
 mysqli_query($koneksi,"update pelatihan set 
 id_pelatihan='$id_pelatihan', 
-nama_pelatihan='$nama_pelatihan', 
-jadwal_pelatihan='$jadwal_pelatihan', 
-jenis_pelatihan='$jenis_pelatihan' 
+nama_pelatihan='$nama_pelatihan'
+
   
 where id='$id'");
  

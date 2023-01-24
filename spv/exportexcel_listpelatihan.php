@@ -31,15 +31,18 @@
 	header("Content-type: application/vnd-ms-excel");
 	header("Content-Disposition: attachment; filename=Data Pelatihan.xls");
 	?>
- 
+	
+	<h3 class="text-center">LAPORAN DATA PELATIHAN PT ARCHROMA INDONESIA </H3>
+    <tr>
+
+    </tr>
  
 	<table border="1">
     <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Pelatihan</th>
                             <th>Nama Pelatihan</th>
-                            <th>Jadwal Pelatihan</th>
-                            <th>Jenis Pelatihan</th>
+                            
                            
                         </tr>
                     
@@ -54,8 +57,6 @@
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $d['id_pelatihan']; ?><a/></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php echo $d['jadwal_pelatihan']; ?></td>
-                                <td><?php echo $d['jenis_pelatihan']; ?></td>
                                 
                                 
                             </tr>

@@ -32,7 +32,7 @@
 	header("Content-Disposition: attachment; filename=Data Karyawan.xls");
 	?>
  
-    <h3>LAPORAN DATA PELATIHAN PT ARCHROMA INDONESIA </H3>
+    <h3>LAPORAN DATA KARYAWAN PT ARCHROMA INDONESIA </H3>
     <tr>
 
     </tr>

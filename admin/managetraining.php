@@ -237,7 +237,7 @@
                 <div class="col-lg-12 ">
                 </br>
                     <!-- <a href="inputtraining.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>  -->
-                    <a target="_blank" href="../spv/exportexcel_listpelatihan.php" class="btn btn-success btn-sm text-right"><span class="fas fa-plus"></span> Export To Excel</a> 
+                    <a target="_blank" href="../spv/exportexcel_listpelatihan.php" class="btn btn-success btn-sm text-right"><span class="fas fa-file-excel"></span><span>    Cetak Data </span>  </a> 
                     <table class="table table-hover table-bordered text-center"  style="margin-top: 10px">
                         <tr class="success">
                             <th width="50px">No</th>
@@ -257,7 +257,7 @@
                         ?>    
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><a href="listemployeetraining.php?id=<?php echo $d['id']; ?>"><?php echo $d['id_pelatihan']; ?><a/></td>
+                                <td><?php echo $d['id_pelatihan']; ?></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
                                 <!-- <td><?php echo $d['jadwal_pelatihan']; ?></td>
                                 <td><?php echo $d['jenis_pelatihan']; ?></td> -->
@@ -265,8 +265,8 @@
                                 <td style="text-align: center;">
                                     <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapustraining.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
                                     <a href="updatetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-primary btn-sm"><span class="fas fa-pen"></span></a>
-                                    <a href="addemployeetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-plus"></span></a>
-                                    <a href="listemployeetraining.php?id=<?php echo $d['id']; ?>" class="btn btn-primary btn-sm"><span class="fas fa-info-circle"></span></a>
+                                    <!-- <a href="addemployeetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-plus"></span></a> -->
+                                    <a href="listemployeetraining.php?id=<?php echo $d['id']; ?>" class="btn btn-secondary btn-sm"><span class="fas fa-info-circle"></span></a>
                                 </td>
                             </tr>
                             <?php

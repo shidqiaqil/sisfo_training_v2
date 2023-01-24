@@ -241,14 +241,14 @@
                                 <label>Nama Pelatihan</label>
                                 <input type="text" value="<?php echo $d['nama_pelatihan']; ?>" class="form-control" name="nama_pelatihan">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Jadwal Pelatihan</label>
                                 <input type="date" value="<?php echo $d['jadwal_pelatihan']; ?>" class="form-control" name="jadwal_pelatihan">
                             </div>
                             <div class="form-group">
                                 <label>Jenis Pelatihan</label>
                                 <input type="text" value="<?php echo $d['jenis_pelatihan']; ?>" class="form-control" name="jenis_pelatihan">
-                            </div>
+                            </div> -->
         
                             <input type="submit" class="btn btn-primary btn-md btn-block"  value="UPDATE">
                         </form>
