@@ -12,9 +12,7 @@
     
     <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-    
-    <title>Penjadwalan</title>
+    <title>Input Penjadwalan</title>
  	
 </head>
 
@@ -72,7 +70,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sub Menu :</h6>
                         <a class="collapse-item" href="inputemployee.php">Input Data Karyawan</a>
-                        <a class="collapse-item " href="manageemployee.php">Manage Data Karyawan</a>
+                        <a class="collapse-item" href="manageemployee.php">Manage Data Karyawan</a>
                     </div>
                 </div>
         </li>
@@ -139,7 +137,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-    
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -212,91 +210,87 @@
 
             </nav>
             <!--------------------------------- End of Topbar -------------------------------------------------------->
-            <?php
-                include('../koneksi.php');
-                    
-                        
-                $query = "SELECT * FROM karyawan";
-                $urlcrud = "manageemployee.php?page=";
-            ?>
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-            
-           
+
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Penjadwalan</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Update Penjadwalan</h1>
                     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                 </div>
 
                     <!-- DataTales Example -->
-                <form action="" method="POST">
-
-                <div class="card shadow mb-4">
-</br>
-                <div class="col-lg-12">
-                    <a href="inputpenjadwalan.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>
-                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
-                    <table class="table table-hover table-bordered" style="margin-top: 10px">
-                        <tr class="success">
-                            <th width="50px">No</th>
-                            <th>Id Pelatihan</th>
-                            <th>Nama Pelatihan</th>
-                            
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Selesai</th>
-                            <th>Jenis Pelatihan</th>
-                            <th>Provider</th>
-                            <!-- <th>Action</th> -->
-                            <!-- <th>No hp</th> -->
-                            <!-- <th>Email</th> -->
-                            <th style="text-align: center;">Actions</th>
-                        </tr>
-                    
-                        
-                        <?php
-                        
-                        $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
-                        $no = 1;
-                        
-                        while($d = mysqli_fetch_array($data)){
-                        ?>    
-                            <tr>
-                                <td><?php echo $no++; ?></td>
-                                <td><?php echo $d['id_nama_pelatihan']; ?></td>
-                                <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php $orgDate = $d['tanggal_mulai'];  
-                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
-                        echo  $newDate;   ?> </td>
-                                
-                                <td><?php $orgDate = $d['tanggal_selesai'];  
-                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
-                        echo $newDate;   ?> </td>
-                              
-                                <td><?php echo $d['nama_jenis_pelatihan']; ?></td>
-                                <td><?php echo $d['provider']; ?></td>
-                                
-                                
-                                <td style="text-align: center;">
-                                    <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapuspenjadwalan.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
-                                    <a href="updatepenjadwalan.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-pen"></span></a>
-                                    <a href="listemployeetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-secondary  btn-sm"  ><span class="fas fa-info-circle"></span></a>
-                                    
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                        
-                        
-                    </table>
-                    <div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-                </div>
                 
+                
+             
+
+                
+                <?php
+                // require_once('koneksi.php');
+                    $id = $_GET['id'];
+                    $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan where detail_pelatihan.id='$id'");
+                    while($d = mysqli_fetch_array($data)){
+                
+                ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        <form action="" method="POST">
+                            <div class="form-group">
+                                    <label>Id-Nama Pelatihan</label></br>
+                                    <select name="id_nama_pelatihan" id="id_nama_pelatihan"class=" form-select"  required><?php echo $d['id_nama_pelatihan']?></span><span>&nbsp</span><?php echo $d['nama_pelatihan']?>
+                                        
+                                        <?php 
+                                            $sql3=mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
+                                            while ($data3=mysqli_fetch_array($sql3)) {
+                                                if ($d['id_pelatihan'] != $data3['id_nama_pelatihan']){
+                                                    ?>
+                                                    <option value="<?=$data3['id_pelatihan']?>"><span ><?=$data3['id_nama_pelatihan']?></span><span>&nbsp</span><?=$data3['nama_pelatihan']?></option> 
+                                                <?php } ?>
+                                            
+                                            
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Mulai</label>
+                                <input type="datetime-local" value="<?php echo $d['tanggal_mulai']; ?>" class="form-control shadow" name="tanggal_mulai" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Selesai</label>
+                                <input type="datetime-local" value="<?php echo $d['tanggal_selesai']; ?>" class="form-control shadow" name="tanggal_selesai" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tempat Kegiatan</label>
+                                <input type="text" value="<?php echo $d['tempat_pelatihan']; ?>" class="form-control shadow" name="tempat_pelatihan" required>
+                            </div>
+                            <div class="form-group">
+                                    <label>Jenis Pelatihan</label></br>
+                                    <select name="nama_jenis_pelatihan" id="nama_jenis_pelatihan"class=" form-select" required>
+                                        <option  selected> Pilih </option>
+                                        <?php 
+                                            $sql4=mysqli_query($koneksi,"SELECT * FROM jenis_pelatihan");
+                                            while ($data4=mysqli_fetch_array($sql4)) {
+                                            ?>
+                                            <option value="<?=$data4['nama_jenis_pelatihan']?>"><?=$data4['nama_jenis_pelatihan']?></option> 
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                            </div>
+                            
+                            <input type="submit" class="btn btn-primary btn-md btn-block" name="create" value="Create">
+     
+
+                        </form>
+                        <?php } ?>
                     </div>
-                </form>           
+                </div>
+
                 <!-- Content Row --------->
                 
 
@@ -348,24 +342,5 @@
     <script src="../assets/sbsadmin/js/demo/chart-area-demo.js"></script>
     <script src="../assets/sbsadmin/js/demo/chart-pie-demo.js"></script>
  
-
-
-    <script type="text/javascript">
-            $(document).ready(function (){
-                $(".open_modal").click(function (e){
-                    var m = $(this).attr("id");
-                    $.ajax({
-                        url: "detailkaryawan.php",
-                        type: "GET",
-                        data : {id_karyawan: m,},
-                        success: function (ajaxData){
-                            $("#ModalEdit").html(ajaxData);
-                            $("#ModalEdit").modal('show',{backdrop: 'true'});
-                        }
-                    });
-                });
-            });
-        </script>        
-
 </body>
 </html>

@@ -260,7 +260,7 @@
                                             $sql3=mysqli_query($koneksi,"SELECT * FROM pelatihan");
                                             while ($data3=mysqli_fetch_array($sql3)) {
                                             ?>
-                                            <option value="<?=$data3['id_pelatihan']?><?=$data3['nama_pelatihan']?>"><span ><?=$data3['id_pelatihan']?></span><span>&nbsp</span><?=$data3['nama_pelatihan']?></option> 
+                                            <option value="<?=$data3['id_pelatihan']?>"><span ><?=$data3['id_pelatihan']?></span><span>&nbsp</span><?=$data3['nama_pelatihan']?></option> 
                                         <?php
                                         }
                                         ?>

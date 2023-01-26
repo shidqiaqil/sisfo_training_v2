@@ -1,0 +1,6 @@
+git add *
+git commit -m "Pesan komit"
+git push origin master
+
+---kalau mau pull---
+git pull
