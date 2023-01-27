@@ -4,3 +4,19 @@ git push origin master
 
 ---kalau mau pull---
 git pull
+
+<select name="id_nama_pelatihan" id="id_nama_pelatihan"class=" form-select" required value="<?php echo $d['id_nama_pelatihan']; ?>" required>
+                                        <option value="<?=$d['id_nama_pelatihan']?>" selected><?=$d['id_nama_pelatihan']?></option>
+                                        <?php 
+                                            $sql3=mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
+                                            while ($data3=mysqli_fetch_array($sql3)) {
+                                               
+                                                    ?>
+                                                    <option value="<?=$data3['id_pelatihan']?>"><span ><?=$data3['id_nama_pelatihan']?></span><span>&nbsp</span><?=$data3['nama_pelatihan']?></option> 
+                                                
+                                            
+                                            
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>

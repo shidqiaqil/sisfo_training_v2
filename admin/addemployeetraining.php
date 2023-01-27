@@ -74,7 +74,7 @@
                     </div>
                 </div>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-clipboard"></i>
@@ -89,7 +89,7 @@
                 </div>
         </li>
 
-         <li class="nav-item">
+         <li class="nav-item active" >
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
@@ -214,7 +214,7 @@
                 include('../koneksi.php');
                     
                 $id = $_GET['id'];
-                $data = mysqli_query($koneksi,"select * from pelatihan where id='$id'");
+                $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan where detail_pelatihan.id='$id'");
                 $d = mysqli_fetch_array($data);
                 $urlcrud = "manageemployee.php?page=";
             ?>
@@ -266,7 +266,8 @@
                                         <!-- 'processaddemployeetraining.php?id_karyawan=".$x[0]."&subid=".$x[3]."' -->
                                         <?php
                                     echo "
-                                        <a class='btn btn-success btn-md text-center'  value='' href='processaddemployeetraining.php?id_pelatihan=".$d['id_pelatihan']."&nama_pelatihan=".$d['nama_pelatihan']."&id_karyawan=".$a['id_karyawan']."&nama_karyawan=".$a['nama_karyawan']."&jabatan_karyawan=".$a['jabatan_karyawan']."&id=".$_GET['id']."'>+ Add</a>
+                                        <a class='btn btn-success btn-md text-center'  value='' href='processaddemployeetraining.php?id=".$d['id']."&nama_pelatihan=".$d['nama_pelatihan']."&id_karyawan=".$a['id_karyawan']."&nama_karyawan=".$a['nama_karyawan']."&jabatan_karyawan=".
+                                        $a['jabatan_karyawan']."&id_nama_pelatihan=".$d['id_nama_pelatihan']."'>+ Add</a>
                                         "; ?>
                                     </div>
 

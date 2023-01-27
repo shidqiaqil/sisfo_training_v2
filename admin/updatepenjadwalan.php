@@ -236,25 +236,12 @@
                 ?>
                 <div class="row">
                     <div class="col-lg-12">
-                        
-                        <form action="" method="POST">
+                    
+                        <form action="updatepostpenjadwalan.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
                             <div class="form-group">
                                     <label>Id-Nama Pelatihan</label></br>
-                                    <select name="id_nama_pelatihan" id="id_nama_pelatihan"class=" form-select"  required><?php echo $d['id_nama_pelatihan']?></span><span>&nbsp</span><?php echo $d['nama_pelatihan']?>
-                                        
-                                        <?php 
-                                            $sql3=mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
-                                            while ($data3=mysqli_fetch_array($sql3)) {
-                                                if ($d['id_pelatihan'] != $data3['id_nama_pelatihan']){
-                                                    ?>
-                                                    <option value="<?=$data3['id_pelatihan']?>"><span ><?=$data3['id_nama_pelatihan']?></span><span>&nbsp</span><?=$data3['nama_pelatihan']?></option> 
-                                                <?php } ?>
-                                            
-                                            
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
+                                    <input type="text" name="id_nama_pelatihan" disabled class="form-control shadow" value="<?php echo $d['id_nama_pelatihan']?> <?php echo $d['nama_pelatihan']?>">
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Mulai</label>
@@ -271,7 +258,7 @@
                             <div class="form-group">
                                     <label>Jenis Pelatihan</label></br>
                                     <select name="nama_jenis_pelatihan" id="nama_jenis_pelatihan"class=" form-select" required>
-                                        <option  selected> Pilih </option>
+                                        <option  selected> <?=$d['nama_jenis_pelatihan']?> </option>
                                         <?php 
                                             $sql4=mysqli_query($koneksi,"SELECT * FROM jenis_pelatihan");
                                             while ($data4=mysqli_fetch_array($sql4)) {
@@ -282,7 +269,10 @@
                                         ?>
                                     </select>
                             </div>
-                            
+                            <div class="form-group">
+                                <label>Catatan</label>
+                                <input type="text" value="<?php echo $d['catatan'];?>" class="form-control shadow" name="catatan" >
+                            </div>
                             <input type="submit" class="btn btn-primary btn-md btn-block" name="create" value="Create">
      
 

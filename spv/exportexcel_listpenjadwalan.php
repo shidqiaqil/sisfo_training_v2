@@ -30,11 +30,8 @@
     include '../koneksi.php';
 	header("Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	header("Content-Disposition: attachment; filename=Data List Penjadwalan Training.xls");
-	
-    $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
-    ?>
-    
-    
+	?>
+ 
     <h3>LAPORAN DATA PENJADWALAN TRAINING PT ARCHROMA INDONESIA </H3>
     <tr>
 

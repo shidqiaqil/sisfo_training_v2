@@ -74,7 +74,7 @@
                     </div>
                 </div>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-clipboard"></i>
@@ -89,7 +89,7 @@
                 </div>
         </li>
 
-         <li class="nav-item">
+         <li class="nav-item active">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
@@ -233,27 +233,42 @@
                     <!-- DataTales Example -->
                 <form action="" method="POST">
                 <div class="col-lg-12">
-                    <table class="table" style="margin-top: 10px; background-color:#227C70; color: white;">
+                    <table class="table text-center shadow" style="margin-top: 10px; background-color:grey; color: white;">
                         <tr class="success">
                             
                             <th>Id Pelatihan</th>
                             <th>Nama Pelatihan</th>
-                            <th>Jadwal Pelatihan</th>
+                            
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
                             <th>Jenis Pelatihan</th>
+                            <th>Provider</th>
+                            <th>Tempat Kegiatan</th>
+                            <th>Catatan</th>
                         </tr>
                                             
                         <?php
                         $id=$_GET['id'];
                         $no = 1;
-                        $data = mysqli_query($koneksi,"select * from pelatihan where id='$id'");
+                        $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan where detail_pelatihan.id='$id'");
                         $d = mysqli_fetch_array($data);
                         ?>    
                             <tr>
                                 
-                                <td><?php echo $d['id_pelatihan']; ?></td>
+                            <td><?php echo $d['id_nama_pelatihan']; ?></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php echo $d['jadwal_pelatihan']; ?></td>
-                                <td><?php echo $d['jenis_pelatihan']; ?></td>
+                                <td><?php $orgDate = $d['tanggal_mulai'];  
+                                    $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                                    echo  $newDate;   ?> </td>
+                                            
+                                            <td><?php $orgDate = $d['tanggal_selesai'];  
+                                    $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                                    echo $newDate;   ?> </td>
+                              
+                                <td><?php echo $d['nama_jenis_pelatihan']; ?></td>
+                                <td><?php echo $d['provider']; ?></td>
+                                <td><?php echo $d['tempat_pelatihan']; ?></td>
+                                <td><?php echo $d['catatan']; ?></td>
                             </tr>
                             
                         
@@ -265,11 +280,13 @@
                 <!-- Content Row --------->
                     </br>
                     </br>
-                <h5>List Employee For <b><?php echo $d['nama_pelatihan'] ?></b> Training</h5>        
+                <h5>List Employee For <b><?php echo $d['id_nama_pelatihan'] ?> <?php echo $d['nama_pelatihan'] ?></b> Training</h5>        
                 <form action="" method="POST">
 
-                </br><a target="_blank" href="../spv/exportexcel_listemployeepelatihan.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm text-right"><span class="fas fa-plus"></span> Export To Excel</a> 
+                </br>
+                <!-- <a target="_blank" href="../spv/exportexcel_listemployeepelatihan.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a>   -->
                 <div class="col-lg-12">
+                <a target="_blank" href="../spv/exportexcel_listemployeepelatihan.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a>  
                     <table class="table table-hover table-bordered" style="margin-top: 10px">
                         <tr class="success">
                             <th width="50px">No</th>
@@ -282,9 +299,9 @@
                     
                         
                         <?php
-                        $id_pelatihan = $d['id_pelatihan'];
+                        $id_nama_pelatihan = $d['id_nama_pelatihan'];
                         $no = 1;
-                        $data = mysqli_query($koneksi,"select * from penjadwalan where id_pelatihan='$id_pelatihan'");
+                        $data = mysqli_query($koneksi,"select * from penjadwalan where id_nama_pelatihan='$id_nama_pelatihan'");
                         while($x = mysqli_fetch_array($data)){
                         ?>    
                             <tr>
@@ -297,7 +314,7 @@
       
                                     <?php
                                     echo "
-                                        <a class='btn btn-danger btn-md text-center'  value='' href='hapusemployeelisttraining.php?id_pelatihan=".$x['id_pelatihan']."&id_karyawan=".$x['id_karyawan']."&id=".$d['id']."'>hapus</a>
+                                        <a class='btn btn-danger btn-md text-center'  value='' href='hapusemployeelisttraining.php?id_nama_pelatihan=".$x['id_nama_pelatihan']."&id_karyawan=".$x['id_karyawan']."&id=".$d['id']."'>hapus</a>
                                         "; ?>
                                 </td>
                             </tr>

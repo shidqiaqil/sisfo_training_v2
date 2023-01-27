@@ -264,9 +264,9 @@
                                 
                                 <td style="text-align: center;">
                                     <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapustraining.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
-                                    <a href="updatetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-primary btn-sm"><span class="fas fa-pen"></span></a>
+                                    <a href="updatetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-pen"></span></a>
                                     <!-- <a href="addemployeetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-plus"></span></a> -->
-                                    <a href="listemployeetraining.php?id=<?php echo $d['id']; ?>" class="btn btn-secondary btn-sm"><span class="fas fa-info-circle"></span></a>
+                                    <!-- <a href="listemployeetraining.php?id=<?php echo $d['id']; ?>" class="btn btn-secondary btn-sm"><span class="fas fa-info-circle"></span></a> -->
                                 </td>
                             </tr>
                             <?php
