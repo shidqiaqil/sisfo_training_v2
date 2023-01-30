@@ -4,14 +4,20 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = "https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link  href="../assets/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
+    
     <!-- <link href="assets/css/loginadmin.css" rel="stylesheet"> -->
     
-    <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    <!-- <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+
+
     <title>Home</title>
  	
     
@@ -327,35 +333,54 @@
                 </br>
                      
                 
-                    <table class="table table-hover table-bordered" style="margin-top: 10px">
+                <table id="example" class="hover row-border" style="margin-top: 10px;">
+                    <thead>
                         <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Pelatihan</th>
                             <th>Nama Pelatihan</th>
-                            <th>Jadwal Pelatihan</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
                             <th>Jenis Pelatihan</th>
-                            
+                            <th>Provider</th>
+                            <th>Tempat Kegiatan</th>
+                            <th>Catatan</th>
+                            <!-- <th>Email</th> -->
+                           
                         </tr>
-                    
+                    </thead>
                         
                         <?php
                         
+                        $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
                         $no = 1;
-                        $data = mysqli_query($koneksi,"select * from pelatihan");
+                        
                         while($d = mysqli_fetch_array($data)){
                         ?>    
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><a href="listemployeetraining.php?id=<?php echo $d['id']; ?>"><?php echo $d['id_pelatihan']; ?><a/></td>
+                                <td><?php echo $d['id_nama_pelatihan']; ?></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php echo $d['jadwal_pelatihan']; ?></td>
-                                <td><?php echo $d['jenis_pelatihan']; ?></td>
+                                <td><?php $orgDate = $d['tanggal_mulai'];  
+                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                        echo  $newDate;   ?> </td>
+                                
+                                <td><?php $orgDate = $d['tanggal_selesai'];  
+                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                        echo $newDate;   ?> </td>
+                              
+                                <td><?php echo $d['nama_jenis_pelatihan']; ?></td>
+                                <td><?php echo $d['provider']; ?></td>
+                                <td><?php echo $d['tempat_pelatihan']; ?></td>
+                                <td><?php echo $d['catatan']; ?></td>
                                 
                                 
+      
                             </tr>
                             <?php
                         }
                         ?>
+                        
                         
                     </table>
                 </div>
@@ -414,9 +439,16 @@
     </div>
     </div>
 
-    
+    <!-- page script -->
+    <script src= "https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src= "https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+    </script>
     <!-- Bootstrap core JavaScript-->
-    <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script> -->
     <script src="../assets/sbsadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -431,6 +463,7 @@
     <!-- Page level custom scripts -->
     <script src="../assets/sbsadmin/js/demo/chart-area-demo.js"></script>
     <script src="../assets/sbsadmin/js/demo/chart-pie-demo.js"></script>
- 
+   
+
 </body>
 </html>

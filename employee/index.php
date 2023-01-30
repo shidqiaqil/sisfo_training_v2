@@ -209,10 +209,12 @@ session_start();
                             <hr>
                             <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Tanggal Lahir</p>
+                                <p class="mb-0">Tempat Tanggal Lahir</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?php echo $d['tanggal_lahir'] ?></p>
+                                <p class="text-muted mb-0"><?php echo $d['tempat_lahir'] ?>, <?php $orgDate = $d['tanggal_lahir'];  
+                        $newDate = date("d-m-Y", strtotime($orgDate));  
+                        echo $newDate;    ?></p>
                             </div>
                             </div>
                             <hr>
@@ -231,6 +233,30 @@ session_start();
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?php echo $d['alamat_karyawan'] ?></p>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Alamat</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $d['alamat_karyawan'] ?></p>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Area</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $d['area_karyawan'] ?></p>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">NO Hp</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $d['hp_karyawan'] ?></p>
                             </div>
                             </div>
                         </div>
