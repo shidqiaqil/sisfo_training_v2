@@ -13,7 +13,15 @@
     <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    
+    <link rel="stylesheet" href = "../assets/sbsadmin/DataTables/jquery.dataTables.min.css">
+    <script src= "../assets/sbsadmin/DataTables/jquery-3.5.1.js"></script>
+    <script src= "../assets/sbsadmin/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+    </script>
+
     <title>Manage Employee</title>
  	
 </head>
@@ -233,14 +241,17 @@
 
                     <!-- DataTales Example -->
                 <form action="" method="POST">
-
+                <a href="inputemployee.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>
+                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
+</br>   
                 <div class="card shadow mb-4">
 </br>
+                
                 <div class="col-lg-12">
-                    <a href="inputemployee.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>
-                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
-                    <table class="table table-hover table-bordered" style="margin-top: 10px">
-                        <tr class="success">
+                    
+                    <table id="example" class="hover row-border" style="margin-top: 10px">
+                    <thead>
+                    <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Karyawan</th>
                             <th>Password</th>
@@ -253,6 +264,8 @@
                             <!-- <th>Email</th> -->
                             <th style="text-align: center;">Actions</th>
                         </tr>
+                    </thead>
+                        
                     
                         
                         <?php
@@ -327,7 +340,7 @@
 
     
     <!-- Bootstrap core JavaScript-->
-    <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script> -->
     <script src="../assets/sbsadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
