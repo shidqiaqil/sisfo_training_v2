@@ -89,10 +89,21 @@
                 </div>
         </li>
 
-         <li class="nav-item active">
+        <li class="nav-item">
+            <a class="nav-link" href="managesupervisor.php">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Data Supervisor</span></a>
+        </li>
+
+         <li class="nav-item">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="historypelatihan.php">
+            <i class="fas fa-fw fa-history"></i>
+            <span>Histori Pelatihan</span></a>
         </li>
         <!--<li class="nav-item">
             <a class="nav-link" href="inputtraining.php">
@@ -286,7 +297,7 @@
                 </br>
                 <!-- <a target="_blank" href="../spv/exportexcel_listemployeepelatihan.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a>   -->
                 <div class="col-lg-12">
-                <a target="_blank" href="../spv/exportexcel_listemployeepelatihan.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a>  
+                <a target="_blank" href="../spv/exportexcel_listemployeepelatihan.php?id_nama_pelatihan=<?php echo $d['id_nama_pelatihan']; ?>" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a>  
                     <table class="table table-hover table-bordered" style="margin-top: 10px">
                         <tr class="success">
                             <th width="50px">No</th>

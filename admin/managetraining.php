@@ -12,8 +12,16 @@
     
     <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <title>Input Employee</title>
+    <title>Manage Training</title>
  	
+    <link rel="stylesheet" href = "../assets/sbsadmin/DataTables/jquery.dataTables.min.css">
+    <script src= "../assets/sbsadmin/DataTables/jquery-3.5.1.js"></script>
+    <script src= "../assets/sbsadmin/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+    </script>
 </head>
 
 
@@ -89,10 +97,21 @@
                 </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="managesupervisor.php">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Data Supervisor</span></a>
+        </li>
+
          <li class="nav-item">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="historypelatihan.php">
+            <i class="fas fa-fw fa-history"></i>
+            <span>Histori Pelatihan</span></a>
         </li>
         <!--<li class="nav-item">
             <a class="nav-link" href="inputtraining.php">
@@ -232,13 +251,18 @@
 
                     <!-- DataTales Example -->
                 <form action="" method="POST">
+                    <div class="my-2">
+                    <a href="inputtraining.php ?>" class="btn btn-dark btn-sm "><span class="fas fa-plus"></span> Tambah</a>
+                    <a target="_blank" href="../spv/exportexcel_listpelatihan.php" class="btn btn-dark btn-sm text-right"><span class="fas fa-file-excel"></span><span>    Cetak Data </span>  </a> 
+                    </div>
 
                 <div class="card shadow mb-4">
                 <div class="col-lg-12 ">
                 </br>
                     <!-- <a href="inputtraining.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>  -->
-                    <a target="_blank" href="../spv/exportexcel_listpelatihan.php" class="btn btn-success btn-sm text-right"><span class="fas fa-file-excel"></span><span>    Cetak Data </span>  </a> 
-                    <table class="table table-hover table-bordered text-center"  style="margin-top: 10px">
+                    
+                    <table id="example" class="hover row-border"  style="margin-top: 10px">
+                    <thead>
                         <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Pelatihan</th>
@@ -247,7 +271,7 @@
                             <th>Jenis Pelatihan</th> -->
                             <th style="text-align: center;">Actions</th>
                         </tr>
-                    
+                        </thead>
                         
                         <?php
                         
@@ -314,7 +338,7 @@
 
     
     <!-- Bootstrap core JavaScript-->
-    <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script> -->
     <script src="../assets/sbsadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

@@ -99,10 +99,21 @@
                 </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="managesupervisor.php">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Data Supervisor</span></a>
+        </li>
+
          <li class="nav-item">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="historypelatihan.php">
+            <i class="fas fa-fw fa-history"></i>
+            <span>Histori Pelatihan</span></a>
         </li>
         <!--<li class="nav-item">
             <a class="nav-link" href="inputtraining.php">
@@ -241,16 +252,21 @@
 
                     <!-- DataTales Example -->
                 <form action="" method="POST">
-                <a href="inputemployee.php ?>" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span> Tambah</a>
-                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-success btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
-</br>   
+                    <div class="my-2">
+                    <a href="inputemployee.php ?>" class="btn btn-dark btn-sm "><span class="fas fa-plus"></span> Tambah</a>
+                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-dark btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
+                    
+                    </div>
+                
                 <div class="card shadow mb-4">
-</br>
+                </br>
                 
                 <div class="col-lg-12">
                     
                     <table id="example" class="hover row-border" style="margin-top: 10px">
+                    
                     <thead>
+                        
                     <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Karyawan</th>

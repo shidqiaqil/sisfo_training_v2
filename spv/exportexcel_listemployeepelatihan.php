@@ -29,13 +29,15 @@
 	<?php
     include '../koneksi.php';
 	header("Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-	header("Content-Disposition: attachment; filename=Data List Penjadwalan Training.xls");
+	header("Content-Disposition: attachment; filename=Data List Member Training.xls");
 	
-    $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
+    $id_nama_pelatihan = $_GET['id_nama_pelatihan'];
+    $data1 = mysqli_query($koneksi,"select * from penjadwalan where id_nama_pelatihan='$id_nama_pelatihan'");
+    $a = mysqli_fetch_array($data1);
     ?>
     
     
-    <h3>LAPORAN DATA PENJADWALAN TRAINING PT ARCHROMA INDONESIA </H3>
+    <h3 style="text-transform:uppercase">LAPORAN DATA LIST MEMBER TRAINING <?php echo $a['id_nama_pelatihan'] ?>-<?php echo $a['nama_pelatihan'] ?> PT ARCHROMA INDONESIA </H3>
     <tr>
 
     </tr>
@@ -45,13 +47,11 @@
                             <th width="50px">No</th>
                             <th>Id Pelatihan</th>
                             <th>Nama Pelatihan</th>
-                            <th>Tanggal Mulai</th>
+                            <th>Id Karyawan</th>
                             
-                            <th>Tanggal Selesai</th>
-                            <th>Jenis Pelatihan</th>
-                            <th>Provider</th>
-                            <th>Tempat Kegiatan</th>
-                            <th>Catatan</th>
+                            <th>Nama Karyawan</th>
+                            <th>Jabatan Karyawan</th>
+                            
                             
 
 
@@ -61,7 +61,7 @@
                         
                         <?php
                         
-                        $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
+                        $data = mysqli_query($koneksi,"select * from penjadwalan where id_nama_pelatihan='$id_nama_pelatihan'");
                         $no = 1;
                         
                         while($d = mysqli_fetch_array($data)){
@@ -70,18 +70,12 @@
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $d['id_nama_pelatihan']; ?></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php $orgDate = $d['tanggal_mulai'];  
-                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
-                        echo  $newDate;   ?> </td>
                                 
-                                <td><?php $orgDate = $d['tanggal_selesai'];  
-                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
-                        echo $newDate;   ?> </td>
                               
-                                <td><?php echo $d['nama_jenis_pelatihan']; ?></td>
-                                <td><?php echo $d['provider']; ?></td>
-                                <td><?php echo $d['tempat_pelatihan']; ?></td>
-                                <td><?php echo $d['catatan']; ?></td>
+                                <td><?php echo $d['id_karyawan']; ?></td>
+                                <td><?php echo $d['nama_karyawan']; ?></td>
+                                <td><?php echo $d['jabatan_karyawan']; ?></td>
+                                
                             <?php
                         }
                         ?>

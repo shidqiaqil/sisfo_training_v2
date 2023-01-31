@@ -89,10 +89,21 @@
                 </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="managesupervisor.php">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Data Supervisor</span></a>
+        </li>
+
          <li class="nav-item">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="historypelatihan.php">
+            <i class="fas fa-fw fa-history"></i>
+            <span>Histori Pelatihan</span></a>
         </li>
         <!--<li class="nav-item">
             <a class="nav-link" href="inputtraining.php">

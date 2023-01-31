@@ -89,10 +89,21 @@
                 </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="managesupervisor.php">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Data Supervisor</span></a>
+        </li>
+
          <li class="nav-item">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="historypelatihan.php">
+            <i class="fas fa-fw fa-history"></i>
+            <span>Histori Pelatihan</span></a>
         </li>
         <!--<li class="nav-item">
             <a class="nav-link" href="inputtraining.php">
@@ -228,13 +239,13 @@
 
                 if($_POST){
                     $id_pelatihan = $_POST['id_pelatihan'];
-                    $sql2 = mysqli_query($koneksi, "select * from pelatihan");
+                    $sql2 = mysqli_query($koneksi, "select count(id_pelatihan) as jumlah from pelatihan where id_pelatihan='".$_POST['id_pelatihan']."'");
                     $l = mysqli_fetch_array($sql2);
-                    if ($id_pelatihan == $l['id_pelatihan']){
+                    if ($l['jumlah'] == '1'){
                         echo "<script>
-                        alert('Id pelatihan Sudah Terdaftar');
+                        alert('Id Pelatihan Sudah Terdaftar');
                         window.location.href='inputtraining.php';
-                        </script>";} else {
+                        </script>";} else{
                     try {
                         $sql = "INSERT INTO pelatihan 
                         (id_pelatihan,nama_pelatihan)
@@ -259,11 +270,11 @@
                         <form action="" method="POST">
                             <div class="form-group">
                                 <label>Id Pelatihan</label>
-                                <input type="text" value="" class="form-control" name="id_pelatihan">
+                                <input type="text" value="" class="form-control" name="id_pelatihan" required>
                             </div>
                             <div class="form-group">
                                 <label>Nama Pelatihan</label>
-                                <input type="text" title="Cannot input number" pattern="[a-z A-Z]*" value="" class="form-control" name="nama_pelatihan">
+                                <input type="text" title="Cannot input number" pattern="[a-z A-Z]*" value="" class="form-control" name="nama_pelatihan" required>
                             </div>
                             
 
