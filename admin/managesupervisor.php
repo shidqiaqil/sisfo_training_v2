@@ -308,7 +308,7 @@
                 
                 <div class="col-lg-12">
                     
-                    <table id="example" class="hover row-border" style="margin-top: 10px">
+                    <table id="example" class="hover row-border " style="margin-top: 10px">
                     
                     <thead>
                         

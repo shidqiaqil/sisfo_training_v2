@@ -12,7 +12,8 @@
     
     <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <title>Histori Pelatihan</title>
+ 	
     <link rel="stylesheet" href = "../assets/sbsadmin/DataTables/jquery.dataTables.min.css">
     <script src= "../assets/sbsadmin/DataTables/jquery-3.5.1.js"></script>
     <script src= "../assets/sbsadmin/js/jquery.dataTables.min.js"></script>
@@ -21,8 +22,6 @@
         $('#example').DataTable();
     });
     </script>
-    <title>Penjadwalan</title>
- 	
 </head>
 
 
@@ -79,7 +78,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sub Menu :</h6>
                         <a class="collapse-item" href="inputemployee.php">Input Data Karyawan</a>
-                        <a class="collapse-item " href="manageemployee.php">Manage Data Karyawan</a>
+                        <a class="collapse-item" href="manageemployee.php">Manage Data Karyawan</a>
                     </div>
                 </div>
         </li>
@@ -98,18 +97,18 @@
                 </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item ">
             <a class="nav-link" href="managesupervisor.php">
             <i class="fas fa-fw fa-user-tie"></i>
             <span>Data Supervisor</span></a>
         </li>
 
-         <li class="nav-item active">
+         <li class="nav-item">
             <a class="nav-link" href="penjadwalan.php">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Penjadwalan</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="historypelatihan.php">
             <i class="fas fa-fw fa-history"></i>
             <span>Histori Pelatihan</span></a>
@@ -157,7 +156,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-    
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -230,84 +229,142 @@
 
             </nav>
             <!--------------------------------- End of Topbar -------------------------------------------------------->
-            <?php
-                include('../koneksi.php');
-                    
-                        
-                $query = "SELECT * FROM karyawan";
-                $urlcrud = "manageemployee.php?page=";
-            ?>
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-            
-           
+
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Penjadwalan</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Input Histori Pelatihan </h1>
                     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                 </div>
 
                     <!-- DataTales Example -->
-                <form action="" method="POST">
-                <div class="my-2">
-                <a href="inputpenjadwalan.php ?>" class="btn btn-dark btn-sm"><span class="fas fa-plus"></span> Tambah</a>
-                    <a target="_blank" href="../spv/exportexcel_listpenjadwalan.php" class="btn btn-dark btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
-                </div>
-                <div class="card shadow mb-4">
-</br>
-                <div class="col-lg-12">
-                   
-                    <table id="example" class="hover row-border my-2" style=" font-size: 14px;">
-                    <thead>
-                        <tr class="success">
-                            <th width="50px">No</th>
-                            <th>Id Pelatihan</th>
-                            <th>Nama Pelatihan</th>
+                <?php
+                // require_once('koneksi.php');
+             
+
+                
+                if($_POST){
+                    
+                    try {
+                        $sql = "INSERT INTO histori_pelatihan 
+                        (id_karyawan, nama_karyawan, posisi, plant ,cost_center,cost_center_name ,date_of_expired ) 
+                        VALUES ('".$_POST['id_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['posisi']."','".$_POST['plant']."','".$_POST['cost_center']."','".$_POST['cost_center_name']."','".$_POST['date_of_expired']."')";
+                        if(!$koneksi->query($sql)){
+                            echo $koneksi->error;
+                            die();
+                        }
+
+                    } catch (Exception $e) {
+                        echo $e;
+                        die();
+                    }
+                    echo "<script>
+                    alert('Data berhasil di simpan');
+                    window.location.href='historypelatihan.php';
+                    </script>";}
+                 
+                ?>
+                <div class="row">
+                    <div class="row col-lg-12">
+                        <form action="" method="POST">
                             
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Selesai</th>
-                            <th>Jenis Pelatihan</th>
-                            <th>Provider</th>
-                            <th>Tempat Kegiatan</th>
-                            <!-- <th>Catatan</th> -->
-                            <!-- <th>Email</th> -->
+                        <div class="row">
+                            <div class="col">
+                                <label>Id Karyawan</label>
+                                <input type="text" class="form-control" placeholder="Id Karyawan" aria-label="Id Karyawan" name="id_karyawan" required>
+                            </div>
+                            <div class="col">
+                                <label>Nama Karyawan</label>
+                                <input type="text" class="form-control" placeholder="Nama Karyawan" aria-label="Nama Karyawan" name="nama_karyawan" required>
+                            </div>
+                            <div class="col">
+                                <label>Posisi</label>
+                                <input type="text" class="form-control" placeholder="Posisi" aria-label="Posisi" name="posisi" required>
+                            </div>
+                        </div>
+
+                        <div class="row my-3">
+                            <div class="col">
+                                <label>Cost center</label>
+                                <input type="text" class="form-control" placeholder="Cost center" aria-label="Cost center" name="cost_center" required>
+                            </div>
+                            <div class="col">
+                                <label>Plant</label>
+                                <input type="text" class="form-control" placeholder="Plant" aria-label="Plant" name="plant" required>
+                            </div>
+                            <div class="col">
+                                <label>Cost Center Name</label>
+                                <input type="text" class="form-control" placeholder="Cost Center Name" aria-label="Cost Center Name" name="cost_center_name" required>
+                            </div>
+                            <div class="col">
+                                <label>Date of Expired</label>
+                                <input type="date" class="form-control" placeholder="Date of Expired" aria-label="Date of Expired" name="date_of_expired" required>
+                            </div>
+                        </div>
+                            <input type="submit" class="my-4 btn btn-primary btn-md btn-block" name="create" value="Submit">
+                        </form>
+                    </div>
+                    <div class="col-lg-8"> 
+                            
+                    </div>
+                </div>
+
+                <div class="my-5 d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Histori Pelatihan </h1>
+                    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                </div>
+                
+                <form action="" method="POST">
+                   
+                
+                <div class="card shadow mb-4">
+                </br>
+                
+                <div class="col-lg-12">
+                    
+                    <table id="example" class="hover row-border " style="margin-top: 10px">
+                    
+                    <thead>
+                        
+                    <tr class="success">
+                            <th width="50px">No</th>
+                            <th>Id Karyawan</th>
+                            <th>Nama Karyawan</th>
+                            <th>Posisi</th>
+                            <th>Cost center</th>
+                            <th>Plant</th>
+                            <th>Cost Center Name</th>
+                            <th>Date of Expired</th>
+                            
                             <th style="text-align: center;">Actions</th>
                         </tr>
                     </thead>
                         
+                    
+                        
                         <?php
                         
-                        $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
+                        $data = mysqli_query($koneksi,"select * from histori_pelatihan");
                         $no = 1;
                         
                         while($d = mysqli_fetch_array($data)){
                         ?>    
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><?php echo $d['id_nama_pelatihan']; ?></td>
-                                <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php $orgDate = $d['tanggal_mulai'];  
-                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
-                        echo  $newDate;   ?> </td>
-                                
-                                <td><?php $orgDate = $d['tanggal_selesai'];  
-                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
-                        echo $newDate;   ?> </td>
-                              
-                                <td><?php echo $d['nama_jenis_pelatihan']; ?></td>
-                                <td><?php echo $d['provider']; ?></td>
-                                <td><?php echo $d['tempat_pelatihan']; ?></td>
-                                <!-- <td><?php echo $d['catatan']; ?></td> -->
-                                
-                                
+                                <td><?php echo $d['id_karyawan']; ?></td>
+                                <td><?php echo $d['nama_karyawan']; ?></td>
+                                <td><?php echo $d['posisi']; ?></td>
+                                <td><?php echo $d['cost_center']; ?></td>
+                                <td><?php echo $d['plant']; ?></td>
+                                <td><?php echo $d['cost_center_name']; ?></td>
+                                <td><?php echo $d['date_of_expired'];   ?> </td>
                                 <td style="text-align: center;">
-                                    <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapuspenjadwalan.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Data"><span class="far fa-trash-alt"></span></a>
-                                    <a href="updatepenjadwalan.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data" ><span class="fas fa-pen"></span></a>
-                                    <a href="addemployeetraining.php?id= <?php echo $d['id']; ?>"  class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Member"><span class="fas fa-plus"></span></a>
-                                    <a href="listemployeetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-secondary  btn-sm"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><span class="fas fa-info-circle"></span></a>
-                                    
+                                    <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapushistoripelatihan.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
+                                   
                                 </td>
                             </tr>
                             <?php
@@ -320,7 +377,8 @@
                 </div>
                 
                     </div>
-                </form>           
+                </form>
+                    
                 <!-- Content Row --------->
                 
 
@@ -372,24 +430,5 @@
     <script src="../assets/sbsadmin/js/demo/chart-area-demo.js"></script>
     <script src="../assets/sbsadmin/js/demo/chart-pie-demo.js"></script>
  
-
-
-    <script type="text/javascript">
-            $(document).ready(function (){
-                $(".open_modal").click(function (e){
-                    var m = $(this).attr("id");
-                    $.ajax({
-                        url: "detailkaryawan.php",
-                        type: "GET",
-                        data : {id_karyawan: m,},
-                        success: function (ajaxData){
-                            $("#ModalEdit").html(ajaxData);
-                            $("#ModalEdit").modal('show',{backdrop: 'true'});
-                        }
-                    });
-                });
-            });
-        </script>        
-
 </body>
 </html>
