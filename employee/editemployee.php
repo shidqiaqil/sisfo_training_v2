@@ -163,15 +163,13 @@
                     <!-- DataTales Example -->
                 <?php
                 // require_once('koneksi.php');
-                    // $id = $_GET['id'];
-                    $id_karyawan = $_SESSION['id_karyawan'];
-                    $data = mysqli_query($koneksi,"select * from karyawan where id_karyawan='$id_karyawan'");
-                    
+                    $id = $_SESSION['id_karyawan'];
+                    $data = mysqli_query($koneksi,"select * from karyawan where id_karyawan='$id'");
                     while($d = mysqli_fetch_array($data)){
                 
                 ?>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <form action="editpostemployee.php" method="POST">
                             <div class="form-group">
                                 <label>Id Karyawan</label>
@@ -198,7 +196,35 @@
                                 <label>Alamat</label>
                                 <input type="text" value="<?php echo $d['alamat_karyawan']; ?>" class="form-control" name="alamat_karyawan">
                             </div>
-                            <input  style="background-color: #c40c0c; border-color: #c40c0c;" type="submit" class="btn btn-primary btn-md btn-block"  value="UPDATE">
+                    </div>
+                    <div class="col-lg-6">
+                            
+                            <div class="form-group">
+                                <label>Area</label></br>
+                                <select name="area_karyawan" id="nama_area" class=" form-select" required value="<?php echo $d['area_karyawan']; ?>">
+                                    <option  selected> <?php echo $d['area_karyawan']; ?> </option>
+                                    <?php 
+                                        $sql3=mysqli_query($koneksi,"SELECT * FROM area");
+                                        while ($data3=mysqli_fetch_array($sql3)) {
+                                            if ($d['area_karyawan'] != $data3['nama_area']){
+                                        ?>
+                                        <option value="<?=$data3['nama_area']?>"><?=$data3['nama_area']?></option>
+                                    <?php } ?>
+                                            
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>No Hp</label>
+                                <input type="text" value="<?php echo $d['hp_karyawan']; ?>" class="form-control" name="hp_karyawan" pattern="[0-9]+">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" value="<?php echo $d['email_karyawan']; ?>" class="form-control" name="email_karyawan">
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-md btn-block"  value="UPDATE">
                         </form>
                         <?php 
                          }

@@ -18,6 +18,15 @@ session_start();
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <title>Home</title>
  	
+    <link rel="stylesheet" href = "../assets/sbsadmin/DataTables/jquery.dataTables.min.css">
+    <script src= "../assets/sbsadmin/DataTables/jquery-3.5.1.js"></script>
+    <script src= "../assets/sbsadmin/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+    </script>
+    <title>Penjadwalan</title>
     
 </head>
 
@@ -30,7 +39,7 @@ session_start();
 	}
 	?>
 
-<body id="page-top" style="color: white;">
+<body id="page-top">
     <div id="wrapper">
 
     <!-- Sidebar -->
@@ -144,62 +153,97 @@ session_start();
             </nav>
             <!--------------------------------- End of Topbar -------------------------------------------------------->
            
+            <?php
+                include('../koneksi.php');
+                    
+                        
+                $query = "SELECT * FROM karyawan";
+                $urlcrud = "manageemployee.php?page=";
+            ?>
+
+            <!-- Begin Page Content -->
             <div class="container-fluid">
-                
+            
+           
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">List Training</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Jadwal Pelatihan</h1>
                     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                 </div>
 
                     <!-- DataTales Example -->
                 <form action="" method="POST">
-
+                <div class="my-2">
+                <!-- <a href="inputpenjadwalan.php ?>" class="btn btn-dark btn-sm"><span class="fas fa-plus"></span> Tambah</a>
+                    <a target="_blank" href="../spv/exportexcel_listpenjadwalan.php" class="btn btn-dark btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a>  -->
+                </div>
                 <div class="card shadow mb-4">
-                <div class="col-lg-12 ">
-                <?php
-                
-                ?>    
-                </br>
-                    <a target="_blank" href="exportexcel_listpelatihan.php" class="btn btn-success btn-sm"><span class="fas fa-plus"></span> Export To Excel</a> 
-                
-                    <table class="table table-hover table-bordered" style="margin-top: 10px">
+</br>
+                <div class="col-lg-12">
+                   
+                    <table id="example" class="hover row-border my-2" style=" font-size: 14px;">
+                    <thead>
                         <tr class="success">
                             <th width="50px">No</th>
                             <th>Id Pelatihan</th>
                             <th>Nama Pelatihan</th>
-                            <th>Jadwal Pelatihan</th>
+                            
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
                             <th>Jenis Pelatihan</th>
-                           
+                            <th>Provider</th>
+                            <th>Tempat Kegiatan</th>
+                            <!-- <th>Catatan</th> -->
+                            <!-- <th>Email</th> -->
+                            <th style="text-align: center;">Actions</th>
                         </tr>
-                    
+                    </thead>
                         
                         <?php
                         
+                        $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan");
                         $no = 1;
-                        $data = mysqli_query($koneksi,"select * from pelatihan");
+                        
                         while($d = mysqli_fetch_array($data)){
                         ?>    
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><a href="listemployeetraining.php?id=<?php echo $d['id']; ?>"><?php echo $d['id_pelatihan']; ?><a/></td>
+                                <td><?php echo $d['id_nama_pelatihan']; ?></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
-                                <td><?php echo $d['jadwal_pelatihan']; ?></td>
-                                <td><?php echo $d['jenis_pelatihan']; ?></td>
+                                <td><?php $orgDate = $d['tanggal_mulai'];  
+                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                        echo  $newDate;   ?> </td>
+                                
+                                <td><?php $orgDate = $d['tanggal_selesai'];  
+                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                        echo $newDate;   ?> </td>
+                              
+                                <td><?php echo $d['nama_jenis_pelatihan']; ?></td>
+                                <td><?php echo $d['provider']; ?></td>
+                                <td><?php echo $d['tempat_pelatihan']; ?></td>
+                                <!-- <td><?php echo $d['catatan']; ?></td> -->
                                 
                                 
+                                <td style="text-align: center;">
+                                    <!-- <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapuspenjadwalan.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Data"><span class="far fa-trash-alt"></span></a>
+                                    <a href="updatepenjadwalan.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data" ><span class="fas fa-pen"></span></a>
+                                    <a href="addemployeetraining.php?id= <?php echo $d['id']; ?>"  class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Member"><span class="fas fa-plus"></span></a> -->
+                                    <a href="listemployeetraining.php?id= <?php echo $d['id']; ?>" class="btn btn-secondary  btn-sm"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><span class="fas fa-info-circle"></span></a>
+                                    
+                                </td>
                             </tr>
                             <?php
                         }
                         ?>
                         
+                        
                     </table>
+                    <div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
                 </div>
+                
                     </div>
-                </form>  
-                
-                
+                </form>           
                 <!-- Content Row --------->
                 
 
@@ -254,7 +298,7 @@ session_start();
 
     
     <!-- Bootstrap core JavaScript-->
-    <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="../assets/sbsadmin/vendor/jquery/jquery.min.js"></script> -->
     <script src="../assets/sbsadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

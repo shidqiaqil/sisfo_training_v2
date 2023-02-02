@@ -209,17 +209,6 @@ session_start();
                             <hr>
                             <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Tempat Tanggal Lahir</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?php echo $d['tempat_lahir'] ?>, <?php $orgDate = $d['tanggal_lahir'];  
-                        $newDate = date("d-m-Y", strtotime($orgDate));  
-                        echo $newDate;    ?></p>
-                            </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                            <div class="col-sm-3">
                                 <p class="mb-0">Jabatan </p>
                             </div>
                             <div class="col-sm-9">
@@ -229,31 +218,36 @@ session_start();
                             <hr>
                             <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Alamat</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?php echo $d['alamat_karyawan'] ?></p>
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Alamat</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?php echo $d['alamat_karyawan'] ?></p>
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-sm-3">
                                 <p class="mb-0">Area</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?php echo $d['area_karyawan'] ?></p>
                             </div>
                             </div>
+      
+                            <hr>
                             <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">NO Hp</p>
+                                <p class="mb-0">Alamat</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $d['alamat_karyawan'] ?></p>
+                            </div>
+                            </div>
+      
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Tempat Tanggal Lahir</p>
+                            </div>
+                            <div class="col-sm-9">
+                            <p class="text-muted mb-0"><?php echo $d['tempat_lahir'] ?>, <?php $orgDate = $d['tanggal_lahir'];  
+                        $newDate = date("d-m-Y", strtotime($orgDate));  
+                        echo $newDate;    ?></p>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Handphone</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?php echo $d['hp_karyawan'] ?></p>
@@ -288,13 +282,17 @@ session_start();
                 </br>
                      
                 
-                    <table class="table table-hover table-success text-center" style="margin-top: 10px">
-                        <tr style="color:black;" class="success">
+                    <table style="color:black;" class="table table-hover table-success text-center" style="margin-top: 10px">
+                        <tr  class="success">
                             <th width="50px">No</th>
                             <th>Id Pelatihan</th>
-                            <th>Nama Pelatihan</th>
-                            <th>Jadwal Pelatihan</th>
+                            <th>Nama Pelatihan</th> 
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
                             <th>Jenis Pelatihan</th>
+                            <th>Provider</th>
+                            <th>Tempat Kegiatan</th>
+                            <th>Catatan</th>
                             
                             
                         </tr>
@@ -304,15 +302,25 @@ session_start();
                         
                         $no = 1;
                         $a=$d['id_karyawan'];
-                        $data = mysqli_query($koneksi,"SELECT * FROM penjadwalan left join pelatihan ON penjadwalan.id_pelatihan = pelatihan.id_pelatihan where penjadwalan.id_karyawan ='$a';");
+                        $data = mysqli_query($koneksi,"SELECT detail_pelatihan.*, pelatihan.nama_pelatihan FROM `detail_pelatihan` left join penjadwalan on detail_pelatihan.id_nama_pelatihan=penjadwalan.id_nama_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan where penjadwalan.id_karyawan='$a'");
                         while($b = mysqli_fetch_array($data)){
                         ?>    
                             <tr>
-                                <td style="color:black;"><?php echo $no++; ?></td>
-                                <td style="color:black;"><?php echo $b['id_pelatihan']; ?><a/></td>
-                                <td style="color:black;"><?php echo $b['nama_pelatihan']; ?></td>
-                                <td style="color:black;"><?php echo $b['jadwal_pelatihan']; ?></td>
-                                <td style="color:black;"><?php echo $b['jenis_pelatihan']; ?></td>
+                            <td><?php echo $no++; ?></td>
+                                <td><?php echo $b['id_nama_pelatihan']; ?></td>
+                                <td><?php echo $b['nama_pelatihan']; ?></td>
+                                <td><?php $orgDate = $b['tanggal_mulai'];  
+                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                        echo  $newDate;   ?> </td>
+                                
+                                <td><?php $orgDate = $b['tanggal_selesai'];  
+                        $newDate = date("d/m/Y H:i", strtotime($orgDate));  
+                        echo $newDate;   ?> </td>
+                              
+                                <td><?php echo $b['nama_jenis_pelatihan']; ?></td>
+                                <td><?php echo $b['provider']; ?></td>
+                                <td><?php echo $b['tempat_pelatihan']; ?></td>
+                                <td><?php echo $b['catatan']; ?></td>
                                 
                                 
                             </tr>
