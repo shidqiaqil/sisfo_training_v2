@@ -277,7 +277,7 @@
                                         <!-- 'processaddemployeetraining.php?id_karyawan=".$x[0]."&subid=".$x[3]."' -->
                                         <?php
                                     echo "
-                                        <a class='btn btn-success btn-md text-center'  value='' href='processaddemployeetraining.php?id=".$d['id']."&nama_pelatihan=".$d['nama_pelatihan']."&id_karyawan=".$a['id_karyawan']."&nama_karyawan=".$a['nama_karyawan']."&jabatan_karyawan=".
+                                        <a class='btn btn-success btn-sm text-center'  value='' href='processaddemployeetraining.php?id=".$d['id']."&nama_pelatihan=".$d['nama_pelatihan']."&id_karyawan=".$a['id_karyawan']."&nama_karyawan=".$a['nama_karyawan']."&jabatan_karyawan=".
                                         $a['jabatan_karyawan']."&id_nama_pelatihan=".$d['id_nama_pelatihan']."'>+ Add</a>
                                         "; ?>
                                     </div>

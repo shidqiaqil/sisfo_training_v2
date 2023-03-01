@@ -250,8 +250,8 @@
                     
                     try {
                         $sql = "INSERT INTO histori_pelatihan 
-                        (id_karyawan, nama_karyawan, posisi, plant ,cost_center,cost_center_name ,date_of_expired ) 
-                        VALUES ('".$_POST['id_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['posisi']."','".$_POST['plant']."','".$_POST['cost_center']."','".$_POST['cost_center_name']."','".$_POST['date_of_expired']."')";
+                        (id_karyawan, nama_karyawan, posisi, pelatihan, plant ,cost_center,cost_center_name ,date_of_expired ) 
+                        VALUES ('".$_POST['id_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['posisi']."','".$_POST['pelatihan']."','".$_POST['plant']."','".$_POST['cost_center']."','".$_POST['cost_center_name']."','".$_POST['date_of_expired']."')";
                         if(!$koneksi->query($sql)){
                             echo $koneksi->error;
                             die();
@@ -287,6 +287,10 @@
                         </div>
 
                         <div class="row my-3">
+                            <div class="col">
+                                <label>Pelatihan</label>
+                                <input type="text" class="form-control" placeholder="pelatihan" aria-label="pelatihan" name="pelatihan" required>
+                            </div>
                             <div class="col">
                                 <label>Cost center</label>
                                 <input type="text" class="form-control" placeholder="Cost center" aria-label="Cost center" name="cost_center" required>
@@ -335,6 +339,7 @@
                             <th>Id Karyawan</th>
                             <th>Nama Karyawan</th>
                             <th>Posisi</th>
+                            <th>Pelatihan</th>
                             <th>Cost center</th>
                             <th>Plant</th>
                             <th>Cost Center Name</th>
@@ -358,6 +363,7 @@
                                 <td><?php echo $d['id_karyawan']; ?></td>
                                 <td><?php echo $d['nama_karyawan']; ?></td>
                                 <td><?php echo $d['posisi']; ?></td>
+                                <td><?php echo $d['pelatihan']; ?></td>
                                 <td><?php echo $d['cost_center']; ?></td>
                                 <td><?php echo $d['plant']; ?></td>
                                 <td><?php echo $d['cost_center_name']; ?></td>

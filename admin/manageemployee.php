@@ -251,12 +251,7 @@
                 </div>
 
                     <!-- DataTales Example -->
-                <form action="" method="POST">
-                    <div class="my-2">
-                    <a href="inputemployee.php ?>" class="btn btn-dark btn-sm "><span class="fas fa-plus"></span> Tambah</a>
-                    <a target="_blank" href="../spv/exportexcel_listemployee.php" class="btn btn-dark btn-sm"><span class="fas fa-file-excel"></i></span> Cetak Data</a> 
-                    
-                    </div>
+                
                 
                 <div class="card shadow mb-4">
                 </br>

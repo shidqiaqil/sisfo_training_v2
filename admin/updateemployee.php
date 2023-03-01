@@ -246,7 +246,7 @@
                             <div class="form-group">
                                 <label>Id Karyawan</label>
                                 <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
-                                <input type="text" value="<?php echo $d['id_karyawan']; ?>" class="form-control" name="id_karyawan">
+                                <input type="text" value="<?php echo $d['id_karyawan']; ?>" class="form-control" name="id_karyawan" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
@@ -255,6 +255,10 @@
                             <div class="form-group">
                                 <label>Nama Karyawan</label>
                                 <input type="text" value="<?php echo $d['nama_karyawan']; ?>" class="form-control" name="nama_karyawan">
+                            </div>
+                            <div class="form-group">
+                                <label>Tmepat Lahir</label>
+                                <input type="text" value="<?php echo $d['tempat_lahir']; ?>" class="form-control" name="tempat_lahir">
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
