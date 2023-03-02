@@ -257,7 +257,7 @@
                                 <input type="text" value="<?php echo $d['nama_karyawan']; ?>" class="form-control" name="nama_karyawan">
                             </div>
                             <div class="form-group">
-                                <label>Tmepat Lahir</label>
+                                <label>Tempat Lahir</label>
                                 <input type="text" value="<?php echo $d['tempat_lahir']; ?>" class="form-control" name="tempat_lahir">
                             </div>
                             <div class="form-group">
