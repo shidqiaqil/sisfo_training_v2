@@ -299,7 +299,7 @@
                                 <!-- <td><?php echo $d['email_karyawan']; ?></td> -->
                                 
                                 <td style="text-align: center;">
-                                    <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapusemployee.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
+                                    <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapusemployee.php?id_karyawan=<?php echo $d['id_karyawan']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
                                     <a href="updateemployee.php?id= <?php echo $d['id']; ?>" class="btn btn-success btn-sm"><span class="fas fa-pen"></span></a>
                                     <a class="btn btn-secondary open_modal btn-sm"  data-toggle='modal' id='<?php echo $d['id_karyawan']; ?>' ><span class="fas fa-info-circle"></span></a>
                                     

@@ -1,8 +1,9 @@
 <?php
 include('../koneksi.php');
-$id = $_GET['id'];
+$id_karyawan = $_GET['id_karyawan'];
 
-mysqli_query($koneksi, "delete from karyawan where id='$id'");
+mysqli_query($koneksi, "delete from karyawan where id_karyawan='$id_karyawan'");
+mysqli_query($koneksi, "delete from penjadwalan where id_karyawan='$id_karyawan'");
 
 echo "<script>
 	alert('Data berhasil di hapus');

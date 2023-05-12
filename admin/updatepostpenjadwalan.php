@@ -10,6 +10,7 @@ $tanggal_selesai = $_POST['tanggal_selesai'];
 $tempat_pelatihan = $_POST['tempat_pelatihan'];
 $nama_jenis_pelatihan = $_POST['nama_jenis_pelatihan'];
 $catatan = $_POST['catatan'];
+$provider = $_POST['provider'];
  
 // update data ke database
 mysqli_query($koneksi,"update detail_pelatihan set 
@@ -18,7 +19,8 @@ tanggal_mulai='$tanggal_mulai',
 tanggal_selesai='$tanggal_selesai', 
 tempat_pelatihan='$tempat_pelatihan', 
 nama_jenis_pelatihan='$nama_jenis_pelatihan', 
-catatan='$catatan'
+catatan='$catatan',
+provider='$provider'
 where id='$id'");
  
 // mengalihkan halaman kembali ke index.php

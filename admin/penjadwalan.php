@@ -263,7 +263,7 @@
                     <thead>
                         <tr class="success">
                             <th width="50px">No</th>
-                            <th>Id Pelatihan</th>
+                            <th>ID Pelatihan</th>
                             <th>Nama Pelatihan</th>
                             
                             <th>Tanggal Mulai</th>

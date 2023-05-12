@@ -335,7 +335,7 @@
                                 <td><?php echo $d['password_spv']; ?></td>
                                 <td style="text-align: center;">
                                     <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapussupervisor.php?id_spv=<?php echo $d['id_spv']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
-                                   
+                                    <a href="updatesupervisor.php?id_spv=<?php echo $d['id_spv'];?>" class="btn btn-success btn-sm"><span class="fas fa-pen"></span></a>
                                 </td>
                             </tr>
                             <?php

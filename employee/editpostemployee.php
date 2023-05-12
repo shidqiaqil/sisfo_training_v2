@@ -4,7 +4,7 @@ include '../koneksi.php';
  
 // menangkap data yang di kirim dari form
 $id = $_POST['id'];
-$id_karyawan = $_POST['id_karyawan'];
+#$id_karyawan = $_POST['id_karyawan'];
 $password_karyawan = $_POST['password_karyawan'];
 $nama_karyawan = $_POST['nama_karyawan'];
 $tempat_lahir = $_POST['tempat_lahir'];
@@ -17,7 +17,7 @@ $email_karyawan = $_POST['email_karyawan'];
  
 // update data ke database
 mysqli_query($koneksi,"update karyawan set 
-id_karyawan='$id_karyawan', 
+
 password_karyawan='$password_karyawan', 
 nama_karyawan='$nama_karyawan', 
 tempat_lahir='$tempat_lahir', 

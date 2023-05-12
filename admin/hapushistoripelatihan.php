@@ -2,7 +2,7 @@
 include('../koneksi.php');
 $id = $_GET['id'];
 
-mysqli_query($koneksi, "delete from histori_pelatihan where id='$id'");
+mysqli_query($koneksi, "delete from history_pelatihan2 where id='$id'");
 
 echo "<script>
 	alert('Data berhasil di hapus');

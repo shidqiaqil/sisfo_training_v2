@@ -243,15 +243,19 @@
                     <!-- DataTales Example -->
                 <?php
                 // require_once('koneksi.php');
-             
-
-                
                 if($_POST){
-                    
+                    $id_karyawan = $_POST['id_karyawan'];
+                    $sql2 = mysqli_query($koneksi, "select count(id_karyawan) as jumlah from karyawan where id_karyawan='".$_POST['id_karyawan']."'");
+                    $l = mysqli_fetch_array($sql2);
+                    if ($l['jumlah'] == '0'){
+                        echo "<script>
+                        alert('Id Karyawan Tidak Terdaftar');
+                        window.location.href='historypelatihan.php';
+                        </script>";} else{
                     try {
-                        $sql = "INSERT INTO histori_pelatihan 
-                        (id_karyawan, nama_karyawan, posisi, pelatihan, plant ,cost_center,cost_center_name ,date_of_expired ) 
-                        VALUES ('".$_POST['id_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['posisi']."','".$_POST['pelatihan']."','".$_POST['plant']."','".$_POST['cost_center']."','".$_POST['cost_center_name']."','".$_POST['date_of_expired']."')";
+                        $sql = "INSERT INTO history_pelatihan2 
+                        (id_karyawan,nama_pelatihan,jenis_pelatihan,provider,date_of_expired) 
+                        VALUES ('".$_POST['id_karyawan']."','".$_POST['nama_pelatihan']."','".$_POST['jenis_pelatihan']."','".$_POST['provider']."','".$_POST['date_of_expired']."')";
                         if(!$koneksi->query($sql)){
                             echo $koneksi->error;
                             die();
@@ -265,8 +269,30 @@
                     alert('Data berhasil di simpan');
                     window.location.href='historypelatihan.php';
                     </script>";}
+                } 
+
+                
+                // if($_POST){
+                    
+                //     try {
+                //         $sql = "INSERT INTO histori_pelatihan 
+                //         (id_karyawan, nama_karyawan, posisi, pelatihan, plant ,cost_center,cost_center_name ,date_of_expired ) 
+                //         VALUES ('".$_POST['id_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['posisi']."','".$_POST['pelatihan']."','".$_POST['plant']."','".$_POST['cost_center']."','".$_POST['cost_center_name']."','".$_POST['date_of_expired']."')";
+                //         if(!$koneksi->query($sql)){
+                //             echo $koneksi->error;
+                //             die();
+                //         }
+
+                //     } catch (Exception $e) {
+                //         echo $e;
+                //         die();
+                //     }
+                //     echo "<script>
+                //     alert('Data berhasil di simpan');
+                //     window.location.href='historypelatihan.php';
+                //     </script>";}
                  
-                ?>
+                // ?>
                 <div class="row">
                     <div class="row col-lg-12">
                         <form action="" method="POST">
@@ -276,17 +302,33 @@
                                 <label>Id Karyawan</label>
                                 <input type="text" class="form-control" placeholder="Id Karyawan" aria-label="Id Karyawan" name="id_karyawan" required>
                             </div>
-                            <div class="col">
+                            <!-- <div class="col">
                                 <label>Nama Karyawan</label>
                                 <input type="text" class="form-control" placeholder="Nama Karyawan" aria-label="Nama Karyawan" name="nama_karyawan" required>
                             </div>
                             <div class="col">
                                 <label>Posisi</label>
                                 <input type="text" class="form-control" placeholder="Posisi" aria-label="Posisi" name="posisi" required>
+                            </div> -->
+                            <div class="col">
+                                <label>Nama Pelatihan</label>
+                                <input type="text" class="form-control" placeholder="Nama Pelatihan" aria-label="pelatihan" name="nama_pelatihan" required>
+                            </div>
+                            <div class="col">
+                                <label>Jenis Pelatihan</label>
+                                <input type="text" class="form-control" placeholder="Jenis Pelatihan" aria-label="pelatihan" name="jenis_pelatihan" required>
+                            </div>
+                            <div class="col">
+                                <label>Provider</label>
+                                <input type="text" class="form-control" placeholder="provider" aria-label="provider" name="provider" required>
+                            </div>
+                            <div class="col">
+                                <label>Date of Expired</label>
+                                <input type="date" class="form-control" placeholder="Date of Expired" aria-label="Date of Expired" name="date_of_expired" required>
                             </div>
                         </div>
 
-                        <div class="row my-3">
+                        <!-- <div class="row my-3">
                             <div class="col">
                                 <label>Pelatihan</label>
                                 <input type="text" class="form-control" placeholder="pelatihan" aria-label="pelatihan" name="pelatihan" required>
@@ -307,7 +349,7 @@
                                 <label>Date of Expired</label>
                                 <input type="date" class="form-control" placeholder="Date of Expired" aria-label="Date of Expired" name="date_of_expired" required>
                             </div>
-                        </div>
+                        </div> -->
                             <input type="submit" class="my-4 btn btn-primary btn-md btn-block" name="create" value="Submit">
                         </form>
                     </div>
@@ -338,11 +380,11 @@
                             <th width="50px">No</th>
                             <th>Id Karyawan</th>
                             <th>Nama Karyawan</th>
-                            <th>Posisi</th>
-                            <th>Pelatihan</th>
-                            <th>Cost center</th>
-                            <th>Plant</th>
-                            <th>Cost Center Name</th>
+                            <th>Jabatan Karyawan</th>
+                            <th>Area Karyawan</th>
+                            <th>Nama Pelatihan</th>
+                            <th>Jenis Pelatihan</th>
+                            <th>Provider</th>
                             <th>Date of Expired</th>
                             
                             <th style="text-align: center;">Actions</th>
@@ -353,7 +395,8 @@
                         
                         <?php
                         
-                        $data = mysqli_query($koneksi,"select * from histori_pelatihan");
+                        $data = mysqli_query($koneksi,"select history_pelatihan2.*, karyawan.nama_karyawan, karyawan.jabatan_karyawan, karyawan.area_karyawan 
+                        from history_pelatihan2 left join karyawan  on history_pelatihan2.id_karyawan=karyawan.id_karyawan");
                         $no = 1;
                         
                         while($d = mysqli_fetch_array($data)){
@@ -362,11 +405,12 @@
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $d['id_karyawan']; ?></td>
                                 <td><?php echo $d['nama_karyawan']; ?></td>
-                                <td><?php echo $d['posisi']; ?></td>
-                                <td><?php echo $d['pelatihan']; ?></td>
-                                <td><?php echo $d['cost_center']; ?></td>
-                                <td><?php echo $d['plant']; ?></td>
-                                <td><?php echo $d['cost_center_name']; ?></td>
+                                <td><?php echo $d['jabatan_karyawan']; ?></td>
+                                <td><?php echo $d['area_karyawan']; ?></td>
+                                <td><?php echo $d['nama_pelatihan']; ?></td>
+                                <td><?php echo $d['jenis_pelatihan']; ?></td>
+                                <td><?php echo $d['provider']; ?></td>
+                                
                                 <td><?php echo $d['date_of_expired'];   ?> </td>
                                 <td style="text-align: center;">
                                     <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapushistoripelatihan.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>

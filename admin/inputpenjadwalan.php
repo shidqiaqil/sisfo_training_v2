@@ -264,7 +264,7 @@
                         
                         <form action="" method="POST">
                             <div class="form-group">
-                                    <label>Id-Nama Pelatihan</label></br>
+                                    <label>Nama Pelatihan</label></br>
                                     <select name="id_nama_pelatihan" id="id_nama_pelatihan"class=" form-select" required>
                                         <option  selected> Pilih </option>
                                         <?php 

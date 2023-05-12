@@ -12,7 +12,7 @@
     
     <link href="../assets/sbsadmin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/sbsadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <title>Input Penjadwalan</title>
+    <title>Input Employee</title>
  	
 </head>
 
@@ -60,7 +60,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item ">
+        <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone"
                     aria-expanded="true" aria-controls="collapseone">
                     <i class="fas fa-fw fa-cog"></i>
@@ -89,7 +89,7 @@
                 </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="managesupervisor.php">
             <i class="fas fa-fw fa-user-tie"></i>
             <span>Data Supervisor</span></a>
@@ -227,72 +227,41 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Update Penjadwalan</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Edit Supervisor</h1>
                     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                 </div>
 
                     <!-- DataTales Example -->
-                
-                
-             
-
-                
                 <?php
                 // require_once('koneksi.php');
-                    $id = $_GET['id'];
-                    $data = mysqli_query($koneksi,"select detail_pelatihan.*,pelatihan.nama_pelatihan from detail_pelatihan left join pelatihan on detail_pelatihan.id_nama_pelatihan=pelatihan.id_pelatihan where detail_pelatihan.id='$id'");
-                    while($d = mysqli_fetch_array($data)){
-                
+                   
+                        $id_spv = $_GET['id_spv'];
+                        $data = mysqli_query($koneksi,"select * from auth_spv where id_spv='$id_spv'");
+                        while($a = mysqli_fetch_array($data)){
+                            
                 ?>
+
+                
                 <div class="row">
                     <div class="col-lg-12">
-                    
-                        <form action="updatepostpenjadwalan.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
+                        <form action="updatepostsupervisor.php" method="POST">
                             <div class="form-group">
-                                    <label>Id-Nama Pelatihan</label></br>
-                                    <input type="text" name="id_nama_pelatihan" disabled class="form-control shadow" value="<?php echo $d['id_nama_pelatihan']?> <?php echo $d['nama_pelatihan']?>">
+                                <label>Id Supervisor</label>
+                                <!-- <input type="hidden" name="id_spv" value="<?php echo $d['id_spv']; ?>" > -->
+                                <input type="text" value="<?php echo $a['id_spv']; ?>" class="form-control" name="id_spv" >
                             </div>
                             <div class="form-group">
-                                <label>Tanggal Mulai</label>
-                                <input type="datetime-local" value="<?php echo $d['tanggal_mulai']; ?>" class="form-control shadow" name="tanggal_mulai" required>
+                                <label>Password Supervisor</label>
+                                <input type="text" value="<?php echo $a['password_spv']; ?>" class="form-control" name="password_spv">
                             </div>
-                            <div class="form-group">
-                                <label>Tanggal Selesai</label>
-                                <input type="datetime-local" value="<?php echo $d['tanggal_selesai']; ?>" class="form-control shadow" name="tanggal_selesai" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Tempat Kegiatan</label>
-                                <input type="text" value="<?php echo $d['tempat_pelatihan']; ?>" class="form-control shadow" name="tempat_pelatihan" required>
-                            </div>
-                            <div class="form-group">
-                                    <label>Jenis Pelatihan</label></br>
-                                    <select name="nama_jenis_pelatihan" id="nama_jenis_pelatihan"class=" form-select" required>
-                                        <option  selected> <?=$d['nama_jenis_pelatihan']?> </option>
-                                        <?php 
-                                            $sql4=mysqli_query($koneksi,"SELECT * FROM jenis_pelatihan");
-                                            while ($data4=mysqli_fetch_array($sql4)) {
-                                            ?>
-                                            <option value="<?=$data4['nama_jenis_pelatihan']?>"><?=$data4['nama_jenis_pelatihan']?></option> 
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Provider</label>
-                                <input type="text" value="<?php echo $d['provider'];?>" class="form-control shadow" name="provider" >
-                            </div>
-                            <div class="form-group">
-                                <label>Catatan</label>
-                                <input type="text" value="<?php echo $d['catatan'];?>" class="form-control shadow" name="catatan" >
-                            </div>
-                            <input type="submit" class="btn btn-primary btn-md btn-block" name="create" value="Create">
-     
-
+                            
+        
+                            <input type="submit" class="btn btn-primary btn-md btn-block"  value="UPDATE">
                         </form>
-                        <?php } ?>
+                        <?php 
+                         }
+                        ?>
                     </div>
                 </div>
 
