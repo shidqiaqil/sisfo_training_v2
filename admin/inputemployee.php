@@ -262,7 +262,7 @@
                     }
                     echo "<script>
                     alert('Data berhasil di simpan');
-                    window.location.href='inputemployee.php';
+                    window.location.href='manageemployee.php';
                     </script>";}
                 } 
                 ?>
