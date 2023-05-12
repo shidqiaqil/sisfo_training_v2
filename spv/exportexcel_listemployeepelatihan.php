@@ -32,7 +32,7 @@
 	header("Content-Disposition: attachment; filename=Data List Member Training.xls");
 	
     $id_nama_pelatihan = $_GET['id_nama_pelatihan'];
-    $data1 = mysqli_query($koneksi,"select * from penjadwalan where id_nama_pelatihan='$id_nama_pelatihan'");
+    $data1 = mysqli_query($koneksi,"select penjadwalan.id_karyawan,penjadwalan.id_nama_pelatihan,penjadwalan.nama_pelatihan,  karyawan.* from penjadwalan left join karyawan on penjadwalan.id_karyawan=karyawan.id_karyawan where penjadwalan.id_nama_pelatihan='$id_nama_pelatihan'");
     $a = mysqli_fetch_array($data1);
     ?>
     
@@ -61,7 +61,7 @@
                         
                         <?php
                         
-                        $data = mysqli_query($koneksi,"select * from penjadwalan where id_nama_pelatihan='$id_nama_pelatihan'");
+                        $data = mysqli_query($koneksi,"select penjadwalan.id_karyawan,penjadwalan.id_nama_pelatihan,penjadwalan.nama_pelatihan,  karyawan.* from penjadwalan left join karyawan on penjadwalan.id_karyawan=karyawan.id_karyawan where penjadwalan.id_nama_pelatihan='$id_nama_pelatihan'");
                         $no = 1;
                         
                         while($d = mysqli_fetch_array($data)){
@@ -70,8 +70,7 @@
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $d['id_nama_pelatihan']; ?></td>
                                 <td><?php echo $d['nama_pelatihan']; ?></td>
-                                
-                              
+
                                 <td><?php echo $d['id_karyawan']; ?></td>
                                 <td><?php echo $d['nama_karyawan']; ?></td>
                                 <td><?php echo $d['jabatan_karyawan']; ?></td>
