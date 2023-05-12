@@ -312,7 +312,7 @@
                         <?php
                         $id_nama_pelatihan = $d['id_nama_pelatihan'];
                         $no = 1;
-                        $data = mysqli_query($koneksi,"select * from penjadwalan where id_nama_pelatihan='$id_nama_pelatihan'");
+                        $data = mysqli_query($koneksi,"select penjadwalan.id_karyawan,penjadwalan.id_nama_pelatihan,  karyawan.* from penjadwalan left join karyawan on penjadwalan.id_karyawan=karyawan.id_karyawan where penjadwalan.id_nama_pelatihan='$id_nama_pelatihan'");
                         while($x = mysqli_fetch_array($data)){
                         ?>    
                             <tr>
