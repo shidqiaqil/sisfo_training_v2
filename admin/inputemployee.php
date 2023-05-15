@@ -247,25 +247,50 @@
                         alert('Id Karyawan Sudah Terdaftar');
                         window.location.href='inputemployee.php';
                         </script>";} else{
-                    try {
-                        $sql = "INSERT INTO karyawan 
+
+                            $sql1 = "INSERT INTO karyawan
+                            (id_karyawan,password_karyawan,nama_karyawan,tanggal_lahir,jabatan_karyawan,alamat_karyawan,area_karyawan,hp_karyawan,email_karyawan,tempat_lahir) 
+                            VALUES ('".$_POST['id_karyawan']."','".$_POST['password_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['tanggal_lahir']."','".$_POST['jabatan_karyawan']."','".$_POST['alamat_karyawan']."','".$_POST['area_karyawan']."','".$_POST['hp_karyawan']."','".$_POST['email_karyawan']."','".$_POST['tempat_lahir']."')";
+                   
+                   // Execute the SQL query to insert data into table1
+                   if (mysqli_query($koneksi, $sql1)) {
+                       echo "Data inserted into table1 successfully. ";
+                   } else {
+                       echo "Error inserting data into table1: " . mysqli_error($koneksi);
+                   }
+                   
+                   // Prepare the SQL query to insert data into table2
+                   $sql2 = "INSERT INTO karyawan_master
                         (id_karyawan,password_karyawan,nama_karyawan,tanggal_lahir,jabatan_karyawan,alamat_karyawan,area_karyawan,hp_karyawan,email_karyawan,tempat_lahir) 
                         VALUES ('".$_POST['id_karyawan']."','".$_POST['password_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['tanggal_lahir']."','".$_POST['jabatan_karyawan']."','".$_POST['alamat_karyawan']."','".$_POST['area_karyawan']."','".$_POST['hp_karyawan']."','".$_POST['email_karyawan']."','".$_POST['tempat_lahir']."')";
-                        if(!$koneksi->query($sql)){
-                            echo $koneksi->error;
-                            die();
-                        }
-
-                    } catch (Exception $e) {
-                        echo $e;
-                        die();
-                    }
+                   
+                   // Execute the SQL query to insert data into table2
+                   if (mysqli_query($koneksi, $sql2)) {
+                       echo "Data inserted into table2 successfully. ";
+                   } else {
+                       echo "Error inserting data into table2: " . mysqli_error($koneksi);
+                   }
+                    // try {
+                    //     $sql = "INSERT INTO karyawan_master
+                    //     (id_karyawan,password_karyawan,nama_karyawan,tanggal_lahir,jabatan_karyawan,alamat_karyawan,area_karyawan,hp_karyawan,email_karyawan,tempat_lahir) 
+                    //     VALUES ('".$_POST['id_karyawan']."','".$_POST['password_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['tanggal_lahir']."','".$_POST['jabatan_karyawan']."','".$_POST['alamat_karyawan']."','".$_POST['area_karyawan']."','".$_POST['hp_karyawan']."','".$_POST['email_karyawan']."','".$_POST['tempat_lahir']."')";
+                    //     $sql4 = "INSERT INTO karyawan 
+                    //     (id_karyawan,password_karyawan,nama_karyawan,tanggal_lahir,jabatan_karyawan,alamat_karyawan,area_karyawan,hp_karyawan,email_karyawan,tempat_lahir) 
+                    //     VALUES ('".$last_id."','".$_POST['password_karyawan']."','".$_POST['nama_karyawan']."','".$_POST['tanggal_lahir']."','".$_POST['jabatan_karyawan']."','".$_POST['alamat_karyawan']."','".$_POST['area_karyawan']."','".$_POST['hp_karyawan']."','".$_POST['email_karyawan']."','".$_POST['tempat_lahir']."')";
+                         
+                    // } catch (Exception $e) {
+                    //     echo $e;
+                    //     die();
+                    // }
                     echo "<script>
                     alert('Data berhasil di simpan');
                     window.location.href='manageemployee.php';
+                    
                     </script>";}
                 } 
+                
                 ?>
+                
                 <div class="row">
                     <div class="col-lg-6">
                         

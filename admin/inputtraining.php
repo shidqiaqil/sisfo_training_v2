@@ -261,7 +261,7 @@
                     }
                     echo "<script>
                     alert('Data berhasil di simpan');
-                    window.location.href='inputtraining.php';
+                    window.location.href='managetraining.php';
                     </script>";
                 } }
                 ?>

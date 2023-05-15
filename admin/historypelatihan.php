@@ -245,7 +245,7 @@
                 // require_once('koneksi.php');
                 if($_POST){
                     $id_karyawan = $_POST['id_karyawan'];
-                    $sql2 = mysqli_query($koneksi, "select count(id_karyawan) as jumlah from karyawan where id_karyawan='".$_POST['id_karyawan']."'");
+                    $sql2 = mysqli_query($koneksi, "select count(id_karyawan) as jumlah from karyawan_master where id_karyawan='".$_POST['id_karyawan']."'");
                     $l = mysqli_fetch_array($sql2);
                     if ($l['jumlah'] == '0'){
                         echo "<script>
@@ -395,8 +395,8 @@
                         
                         <?php
                         
-                        $data = mysqli_query($koneksi,"select history_pelatihan2.*, karyawan.nama_karyawan, karyawan.jabatan_karyawan, karyawan.area_karyawan 
-                        from history_pelatihan2 left join karyawan  on history_pelatihan2.id_karyawan=karyawan.id_karyawan");
+                        $data = mysqli_query($koneksi,"select history_pelatihan2.*, karyawan_master.nama_karyawan, karyawan_master.jabatan_karyawan, karyawan_master.area_karyawan 
+                        from history_pelatihan2 left join karyawan_master  on history_pelatihan2.id_karyawan=karyawan_master.id_karyawan");
                         $no = 1;
                         
                         while($d = mysqli_fetch_array($data)){
@@ -411,7 +411,9 @@
                                 <td><?php echo $d['jenis_pelatihan']; ?></td>
                                 <td><?php echo $d['provider']; ?></td>
                                 
-                                <td><?php echo $d['date_of_expired'];   ?> </td>
+                                <td><?php $orgDate= $d['date_of_expired']; echo $newDate = date("d-m-Y", strtotime($orgDate) );  ?> 
+                                
+                                </td>
                                 <td style="text-align: center;">
                                     <a onclick="return confirm('Apakah yakin data akan di hapus?')" href="hapushistoripelatihan.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm"><span class="far fa-trash-alt"></span></a>
                                    

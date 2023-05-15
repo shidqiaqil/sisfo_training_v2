@@ -12,7 +12,7 @@ $nama_pelatihan = $_POST['nama_pelatihan'];
  
 // update data ke database
 mysqli_query($koneksi,"update pelatihan set 
-id_pelatihan='$id_pelatihan', 
+ 
 nama_pelatihan='$nama_pelatihan'
 
   

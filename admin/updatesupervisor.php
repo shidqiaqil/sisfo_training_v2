@@ -249,7 +249,7 @@
                             <div class="form-group">
                                 <label>Id Supervisor</label>
                                 <!-- <input type="hidden" name="id_spv" value="<?php echo $d['id_spv']; ?>" > -->
-                                <input type="text" value="<?php echo $a['id_spv']; ?>" class="form-control" name="id_spv" >
+                                <input type="text" value="<?php echo $a['id_spv']; ?>" class="form-control" name="id_spv" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Password Supervisor</label>

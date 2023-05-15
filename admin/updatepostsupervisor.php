@@ -12,7 +12,7 @@ $password_spv = $_POST['password_spv'];
  
 // update data ke database
 mysqli_query($koneksi,"update auth_spv set
-id_spv='$id_spv',
+
 password_spv='$password_spv'
 where id_spv='$id_spv'");
  

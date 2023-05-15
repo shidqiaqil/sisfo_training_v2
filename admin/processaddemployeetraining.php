@@ -34,7 +34,7 @@ $jabatan_karyawan = $_GET['jabatan_karyawan'];
     }
     echo "<script>
     alert('Data berhasil di simpan');
-    window.location.href='addemployeetraining.php?id=$id';
+    window.location.href='penjadwalan.php';
     </script>";}
 
 

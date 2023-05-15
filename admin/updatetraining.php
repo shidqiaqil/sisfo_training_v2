@@ -246,7 +246,7 @@
                             <div class="form-group">
                                 <label>Id Pelatihan</label>
                                 <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
-                                <input type="text" value="<?php echo $d['id_pelatihan']; ?>" class="form-control" name="id_pelatihan">
+                                <input type="text" value="<?php echo $d['id_pelatihan']; ?>" class="form-control" name="id_pelatihan" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Nama Pelatihan</label>
