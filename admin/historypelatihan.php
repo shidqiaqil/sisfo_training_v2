@@ -245,7 +245,7 @@
                 // require_once('koneksi.php');
                 if($_POST){
                     $id_karyawan = $_POST['id_karyawan'];
-                    $sql2 = mysqli_query($koneksi, "select count(id_karyawan) as jumlah from karyawan_master where id_karyawan='".$_POST['id_karyawan']."'");
+                    $sql2 = mysqli_query($koneksi, "select count(id_karyawan) as jumlah from karyawan where id_karyawan='".$_POST['id_karyawan']."'");
                     $l = mysqli_fetch_array($sql2);
                     if ($l['jumlah'] == '0'){
                         echo "<script>
